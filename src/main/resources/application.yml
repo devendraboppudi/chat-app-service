@@ -1,0 +1,52 @@
+server:
+  port: 8081
+
+security:
+  basic:
+    enable: false
+
+  jwt:
+    uri: /auth/**
+    header: Authorization
+    prefix: Bearer
+    expiration: 86400
+    secret: JwtSecretKey
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    username: password
+    password: password
+    url: jdbc:h2:file:C:\\data\\chatapp
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
+
